@@ -1,0 +1,94 @@
+<!-- 
+    Form in HTML
+        There are 11 tag inside of form tag
+
+        1. Textbox
+        2. Password
+        3. Radio button
+        4. Checkbox
+        5. Textarea
+        6. Select - Option
+        7. Button
+        8. Reset
+        9. Submit
+        10. File
+        11. Hidden
+
+
+ -->
+<html>
+    <head>
+        <script>
+            console.log("*************");
+            console.log("welcome");
+            console.log("hello");
+
+            console.log = ()=>{
+
+            }
+            
+        </script>
+    </head>
+    <body>
+        <h1>Form in HTML</h1>
+        <form>
+            <input type="hidden" />
+            <br />
+            <label for="fname">First Name</label> : <input id="fname"  type="text" placeholder="First Name"/>
+            <br />
+            <br />
+            Password : <input value="123" type="password" placeholder="Password"/>
+            <br />
+            <Br />
+            Gender : <label for="m">Male</label><input type="radio" id="m" name="gender"/>
+                    <label for="f">Female</label><input type="radio" id="f" name="gender"/>  
+            <br />
+            <br />
+            Upload Your Profile Picture : <input type="file" />
+            <br />
+            <br />
+            Hobby : Music<input type="checkbox" name="x"/>
+                    Internet <input type="checkbox" checked name="x"/>
+                <br />
+                    Football<input type="checkbox" name="x"/>
+                    Cricket<input type="checkbox" checked name="x"/>
+
+            <br />
+            <br />
+            Address <textarea placeholder="Your Address" rows="5" cols="30">Palaysia</textarea>
+            <br />
+            <Br />
+            City : <select>
+                <option>Select</option>
+                <option selected>Indore</option>
+                <option>Bhopal</option>
+                <option>Mumbai</option>
+            </select>
+            <br />
+            <br />
+            <input type="button"  value="OK"/>
+            <input type="reset" value="Clear" />
+            <input type="submit"  value="Registration" />
+            <hr />
+            <h3>HTML 5 Form Tag</h3>
+            Number <input type="number" />
+            <br />
+            Calender <input type="date" />
+            <Br />
+            Calender <input type="datetime-local" />
+            <Br />
+            Color <input type="color" />
+            <Br />
+            Email <input type="email" />
+            <br />
+            Range <input type="range" />
+            <br />
+            Month<input type="month" />
+            <br />
+            
+            
+            
+        </form>
+        
+    </body>
+</html>

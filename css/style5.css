@@ -1,0 +1,28 @@
+body{
+    background-color: gray;
+}
+.header{
+    width: 100%;
+    background-color: #212F3D;
+    height: 80px;
+}
+.navbar{
+    width: 100%;
+    height: 50px;
+    background-color: #000;
+}
+.content{
+    width: 100%;
+    height: 800px;
+    
+}
+.footer{
+    background-color: #212F3D;
+    height: 250px;
+    width: 100%;
+}
+.top-footer{
+    background-color: #000;
+    width: 100%;
+    height: 80px;
+}
