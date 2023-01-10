@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.bundle.js"></script>
+        
+    </head>
+    <body>
+        
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="card border border-dark">
+                        <div class="card-header bg-dark">
+                            <h4 class="text-light text-center">Registration</h4>
+                            <p class="text-light text-center"><small><button data-toggle="modal" data-target="#box" class="btn btn-sm btn-light">New User</button></small></p>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="fullname">Full Name</label>
+                                <input id="fullname" type="text" placeholder="Full Name" class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="text" placeholder="Email" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" placeholder="Password" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label>City</label>
+                                <select class="form-control" >
+                                    <option>Select</option>
+                                    <option>Indore</option>
+                                    <option>Mumbai</option>
+                                    <option>Pune</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                Gender : <label for="m">Male</label> <input id="m" type="radio" name="gender"/>
+                                        <label for="f">Female</label> <input id="f" type="radio" name="gender"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Address</label>
+                                <textarea placeholder="Address" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-dark">
+                            <input type="submit" value="Signup" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            </div>        
+        </div>
+
+        <div class="modal fade" id="box">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>User Login</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Email/Username</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary">Login</button>
+                        <button data-dismiss="modal" class="btn btn-danger">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+</html>
