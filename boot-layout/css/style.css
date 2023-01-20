@@ -1,0 +1,25 @@
+.bg-orange{
+    background-color: #C84B31;
+}
+.text-orange{
+    color: #C84B31;
+}
+
+.bg-blue{
+    background-color: #2D4263;
+}
+.text-white{
+    color: #fff;
+}
+#nav .nav .nav-item .nav-link:hover{
+    background-color: #C84B31;
+}
+
+#nav .dropdown .dropdown-menu .dropdown-item:hover{
+    background-color: #C84B31;
+}
+.slider{
+    height: 350px;
+    background-image: url("../images/slider/1.jpg");
+    background-size: 100% 100%;
+}
