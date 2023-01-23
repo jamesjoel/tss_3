@@ -5,7 +5,7 @@ function demo(){
     let c = 5;
     
     let x = a*b;
-    let y = x/c;
+    let y = x/c; 
     console.log(y);
 }
 
