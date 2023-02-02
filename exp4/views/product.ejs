@@ -1,0 +1,41 @@
+<%- include('header') %>
+<div class="container my-4">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>New Product</h3>
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="form-group">
+                        <select class="form-control">
+                            <option>Select</option>
+                            <% data.forEach((item)=>{ %>
+                                <option><%= item %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <% product.forEach((item)=>{ %>
+                    <div class="col-md-2 col-6">
+                        <div class="card my-2">
+                            <img src="/images/<%= item.img %>" style="height:150px" class="card-img-top" />
+                            <div class="card-body">
+                                <h4><%= item.title %></h4>
+                                <p><%= item.price %></p>
+                            </div>
+                            <div class="card-footer bg-secondary">
+                                <button class="btn btn-sm btn-info">Buy</button>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('footer') %>
