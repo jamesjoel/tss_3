@@ -1,9 +1,24 @@
 const express = require("express");
 const app = express();
 
+const mongoose = require("mongoose");
+mongoose.connect("mongodb://0.0.0.0:27017/tss4")
+
+const TeacherSchema = mongoose.Schema({
+    name : String,
+    salary : Number,
+    class : String,
+    city : String,
+    address : String
+})
+
+const TeacherModel = mongoose.model("teacher", TeacherSchema);
+
 // we have to set our template engine 
 app.set("view engine", "ejs"); 
 
+app.use(express.json());
+app.use(express.urlencoded({ extended : true }))
 // now we have to set our static files folder
 app.use(express.static(__dirname+"/assets"));
 
@@ -16,6 +31,45 @@ app.use(express.static(__dirname+"/assets"));
 app.get("/", (req, res)=>{
     res.render("home");
 });
+
+
+
+
+
+
+
+
+
+
+app.get("/teacher", (req, res)=>{
+    res.render("teacher");
+});
+
+app.post("/add", (req, res)=>{
+    TeacherModel.create(req.body, (err)=>{
+        if(err){
+            console.log(err);
+            return;
+        }
+
+        res.redirect("/");
+    });
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.get("/contact", (req, res)=>{
     res.render("contact");
 });
