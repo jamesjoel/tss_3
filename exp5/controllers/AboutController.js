@@ -1,7 +1,7 @@
 const route = require("express").Router();
 
 route.get("/", (req, res)=>{
-    let url = req.url; // /about
+    let url = req.originalUrl; // /about
     let obj = {url, title : "TSS - About"};
     
     res.render("pages/about", obj);
