@@ -13,6 +13,7 @@
                     <th>Email</th>
                     <th>View</th>
                     <th>Delete</th>
+                    <th>Edit</th>
                 </tr>
                 <% result.forEach((item, i)=>{ %>
                     <tr>
@@ -21,6 +22,7 @@
                         <td><%= item.email %></td>
                         <td><a href="/student/detail?id=<%= item._id %>" class="btn btn-sm btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
                         <td><a href="/student/delete?id=<%= item._id %>" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                        <td><a href="/student/edit?id=<%= item._id %>" class="btn btn-warning btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
                     </tr>
                 <% }) %>
             </table>

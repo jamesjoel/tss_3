@@ -12,6 +12,18 @@ route.get("/detail", (req, res)=>{
     })
 })
 
+route.get("/edit", (req, res)=>{
+    let id = req.query.id;
+    Student.find({_id : id}, (err, user)=>{
+        City.find({}, (err, result)=>{
+            let url = req.originalUrl; // /contact
+            let obj = {url, title : "TSS - Student", result, user : user[0]};
+            res.render("pages/edit-student", obj);
+
+        })
+    })
+    
+})
 route.get("/removeall", (req, res)=>{
     Student.remove({}, (err)=>{
         res.redirect("/student/view");
@@ -47,6 +59,12 @@ route.post("/save", (req, res)=>{
     });
 })
 
+route.post("/update", (req, res)=>{
+    let id = req.query.id;
+    Student.updateMany({_id : id}, req.body, (err)=>{
+        res.redirect("/student/view");
+    })
+})
 
 
 module.exports = route;
