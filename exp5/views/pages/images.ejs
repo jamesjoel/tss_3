@@ -1,0 +1,19 @@
+<%- include("../includes/header") %>
+<div class="container my-3" style="min-height: 700px; margin-top: 100px !important;">
+    <div class="row">
+        <div class="col-md-12"><h2>Images Page</h2>
+            <form action="/images/save" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Select Image</label>
+                    <input type="file" class="form-control" name="photo" />
+                </div>
+                <input type="submit" value="Add" class="btn btn-primary" />
+            </form>
+            <br />
+            <% result.forEach((x)=>{ %>
+                <img src="/user-image/<%= x.name %>" height="100" width="100" />
+            <% }) %>
+        </div>
+    </div>
+</div>
+<%- include("../includes/footer") %>
