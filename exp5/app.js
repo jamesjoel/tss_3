@@ -22,8 +22,23 @@ app.listen(port, ()=>{
     console.log("server running");
 })
 
+//   app.js ---->              routes.js ----> 
+/*
+flipkart.com                            --- controller (home)
+
+flipkart.com/about                      --- controller (about)
+flipkart.com/about/more                 --- controller (about)
+flipkart.com/about/more/info                 --- controller (about)
+flipkart.com/about/more/primary                 --- controller (about)
+flipkart.com/about/more/seconday                 --- controller (about)
 
 
+flipkart.com/contact                 --- controller (contact)
+flipkart.com/contact/help            --- controller (contact)
+flipkart.com/contact/demo            --- controller (contact)
+
+
+*/
 
 
 
