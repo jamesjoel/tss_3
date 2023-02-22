@@ -1,6 +1,7 @@
 const route = require("express").Router();
 const City = require("../models/City");
 const Student = require("../models/Student");
+const sha1 = require("sha1");
 
 route.get("/detail", (req, res)=>{
     let id = req.query.id;
@@ -54,6 +55,9 @@ route.get("/view", (req, res)=>{
     });
 })
 route.post("/save", (req, res)=>{
+
+    req.body.password = sha1(req.body.password);
+    
     Student.create(req.body, (err)=>{
         res.redirect("/student/view");
     });

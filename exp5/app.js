@@ -1,14 +1,19 @@
 const express = require("express");
 // we are calling express constructor
 const app = express();
+const upload = require("express-fileupload");
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname+"/assets"));
 
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended : true }));
 
+app.use(upload());
 app.use(require("./config/routes"));
+
 
 
 
@@ -16,6 +21,25 @@ const port = process.env.PORT || 3000;
 app.listen(port, ()=>{
     console.log("server running");
 })
+
+//   app.js ---->              routes.js ----> 
+/*
+flipkart.com                            --- controller (home)
+
+flipkart.com/about                      --- controller (about)
+flipkart.com/about/more                 --- controller (about)
+flipkart.com/about/more/info                 --- controller (about)
+flipkart.com/about/more/primary                 --- controller (about)
+flipkart.com/about/more/seconday                 --- controller (about)
+
+
+flipkart.com/contact                 --- controller (contact)
+flipkart.com/contact/help            --- controller (contact)
+flipkart.com/contact/demo            --- controller (contact)
+
+
+*/
+
 
 
 
@@ -38,4 +62,17 @@ app.listen(port, ()=>{
     
 
 
+
+
+    I   --- app.use("/about", (req, res)=>{
+
+            })
+
+    II ---      app.use(["/about", "/contact"], (req, res)=>{
+
+                })
+
+    III ---   app.use((req, res)=>{
+
+                })
 */
