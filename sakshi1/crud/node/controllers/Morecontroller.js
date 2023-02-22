@@ -15,8 +15,21 @@ route.get("/record",(req,res)=>{
   res.render("pages/record",obj);
 
   })
-  
 })
+
+route.get("/delete",(req,res)=>{
+  let id = req.query.id;
+  registration.remove({_id :id},(err)=>{
+    res.redirect("/more/record");
+
+  })
+ 
+})
+
+
+
+
+
 
 
 route.post("/save",(req,res)=>{
@@ -25,7 +38,7 @@ route.post("/save",(req,res)=>{
         console.log(err);
         return;
     }
-    res.redirect("/");
+    res.redirect("/more/record");
   })
 })
 

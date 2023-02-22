@@ -11,6 +11,7 @@
                     <th>name</th>
                     <th>age</th>
                     <th>city</th>               
+                    <th>delete</th>             
                 </tr>
                 <% result.forEach((item,i)=>{ %>
                     <tr>
@@ -18,8 +19,10 @@
                         <td><%= item.name %></td>
                         <td><%= item.age %></td>
                         <td><%= item.city %></td>
+                        <td><a href="more/delete?id=<%=item._id %>" class="btn btn-danger">del</a></td>
+                       
                     </tr>
-            
+         
                 <% }) %>
             </table>
         </div>
