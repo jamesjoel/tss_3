@@ -12,14 +12,14 @@
                     <th>age</th>
                     <th>city</th>               
                 </tr>
-                <% user.forEach((item,i){ %>
+                <% result.forEach((item,i)=>{ %>
                     <tr>
-                        <td><%= i+1   %></td>
+                        <td><%= i+1 %></td>
                         <td><%= item.name %></td>
-                        <td><%= item.age  %></td>
+                        <td><%= item.age %></td>
                         <td><%= item.city %></td>
                     </tr>
-
+            
                 <% }) %>
             </table>
         </div>

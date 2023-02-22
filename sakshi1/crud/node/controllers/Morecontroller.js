@@ -10,19 +10,12 @@ route.get("/registration",(req,res)=>{
 })
 
 route.get("/record",(req,res)=>{
-  let user = [{
-    name: "riya",
-    age: 22,
-    city: "indore"
-  },
-  {
-    name: "priya",
-    age: 25,
-    city: "bhopal"
-  }
-]
-let obj ={user};
+  registration.find({},(err,result)=>{
+  let obj ={result};
   res.render("pages/record",obj);
+
+  })
+  
 })
 
 
@@ -32,7 +25,7 @@ route.post("/save",(req,res)=>{
         console.log(err);
         return;
     }
-    res.redirect("/")
+    res.redirect("/");
   })
 })
 
