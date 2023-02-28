@@ -39,6 +39,8 @@ route.get("/delete", (req, res)=>{
 
 
 route.get("/add", (req, res)=>{
+
+
     City.find({}, (err, result)=>{
         let url = req.originalUrl; // /contact
         let obj = {url, title : "TSS - Student", result};
@@ -46,6 +48,9 @@ route.get("/add", (req, res)=>{
 
     })
 })
+
+
+
 route.get("/view", (req, res)=>{
     Student.find({}, (err, result)=>{
         // console.log(result);
