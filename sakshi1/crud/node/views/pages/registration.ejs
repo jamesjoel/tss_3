@@ -1,0 +1,46 @@
+<%- include('../includes/header')  %>
+<div class="container" style="min-height: 700px;">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 mt-5" >
+
+            <form action="/more/save" method="post">
+
+                <div class="form-group">
+                    <label for="">full name</label>
+                    <input type="text" class="form-control" name="name" />
+                </div>
+
+                <div class="form-group">
+                    <label for="">age</label>
+                    <input type="text" class="form-control" name="age" />
+                </div>
+
+                <div class="form-group">
+                    <label for="">address</label>
+                   <textarea class="form-control" name="address"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="">city</label>
+                     <select class="form-control" name="city">
+                        <option>select</option>
+                        <option>bhopal</option>
+                        <option>indore</option>
+                        <option>ujjain</option>
+                        <option>devas</option>
+                        </select>
+                </div>
+
+                <input type="submit" value="save" class="btn btn-primary" />
+
+
+
+
+            </form>  
+    </div>
+   </div>
+</div>
+
+
+
+<%- include('../includes/footer')  %>                       
