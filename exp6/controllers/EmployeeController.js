@@ -36,9 +36,18 @@ route.get("/edit", (req, res)=>{
 
 
 route.post("/save", (req, res)=>{
+
+
+
     Employee.create(req.body, (err)=>{
         res.redirect("/employee");
     })
+
+    Employee.create(req.body);
+    res.redirect("/employee");
+
+
+
 })
 route.get("/delete", (req, res)=>{
     let id = req.query.id;
@@ -56,5 +65,19 @@ route.post("/update", (req, res)=>{
         res.redirect("/employee");
     });
 })
+
+/*
+app.listen(3000, ()=>{
+    console.log("server running")
+})
+
+
+app.listen(3000)
+console.log("server running");
+
+
+*/
+
+
 
 module.exports = route;

@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <script>
+            function demo1(cb)
+            {
+                setTimeout(()=>{
+                    var a = 5;
+                    cb(a);
+                },  2000)
+            }
+            function demo2(num, cb)
+            {
+                setTimeout(()=>{
+                    var ans = num*2;
+                    cb(ans);
+                }, 3000)
+            }
+
+            function demo3(num, cb)
+            {
+                setTimeout(()=>{
+                    var ans = num+10;
+                    cb(ans);
+                }, 1000)
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+            function myclick()
+            {
+                demo1((x)=>{
+                    demo2(x, (y)=>{
+                        demo3(y, (z)=>{
+                            console.log(z);
+                        })
+                    })
+                });
+            }
+           
+
+
+
+        </script>
+    </head>
+    <body>
+        <h1>Callback Function in JS</h1>
+        <button onclick="myclick()">OK</button>
+    </body>
+</html>
+
+<!-- 
+    
+
+
+
+
+ -->
+
+
+
+
