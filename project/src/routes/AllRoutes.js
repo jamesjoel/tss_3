@@ -9,6 +9,8 @@ import Dashboard from '../components/pages/admin/Dashboard/Dashboard'
 import Setting from '../components/pages/admin/Setting/Setting'
 import Products  from '../components/pages/admin/Products/Products'
 import NotFound from '../components/pages/NotFound/NotFound'
+import Category from '../components/pages/admin/Category/Category';
+import List from '../components/pages/admin/Category/List';
 const AllRoutes = () => {
   return (
     <>
@@ -25,6 +27,8 @@ const AllRoutes = () => {
         <Route path='' element={<Dashboard />} />
         <Route path='setting' element={<Setting />} />
         <Route path='products' element={<Products />} />
+        <Route path='category' element={<Category />} />
+        <Route path='category/list' element={<List />} />
         <Route path='*' element={<Navigate to="/" />} />
       </Route>
 

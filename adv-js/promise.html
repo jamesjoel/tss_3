@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <script>
+            /*
+            demo1(5)
+            demo2(25)
+            demo3(12.5)
+            demo4(22.5)
+            demo5(45)
+
+            145
+
+            */
+
+            async function clickme()
+            {
+                // let abc = demo1(5);
+                // abc.then((ans)=>{
+                //     return demo2(ans);
+                // }).then((ans)=>{
+                //     return demo3(ans)
+                // }).then((ans)=>{
+                //     return demo4(ans)
+                // }).then((ans)=>{
+                //     return demo5(ans);
+                // }).then((ans)=>{
+                //     console.log(ans);
+                // })
+
+                let a = await demo1(5);
+                let b = await demo2(a);
+                let c = await demo3(b);
+                let d = await demo4(c);
+                let e = await demo5(d);
+                console.log(e);
+            }
+        </script>
+    </head>
+    <body>
+        <button onclick="clickme()">OK</button>
+    </body>
+    <script>
+        function demo1(num)
+        {
+            return new Promise((resolve)=>{
+                setTimeout(()=>{
+                    var ans = num*num;
+                    resolve(ans)
+                }, 1000)
+            })
+        }
+        function demo2(num)
+        {
+            return new Promise((resolve)=>{
+                setTimeout(()=>{
+                    var ans = num/2;
+                    resolve(ans)
+                }, 1000)
+            })
+        }
+        function demo3(num)
+        {
+            return new Promise((resolve)=>{
+                setTimeout(()=>{
+                    var ans = num+10;
+                    resolve(ans)
+                }, 1000)
+            })
+        }
+        function demo4(num)
+        {
+            return new Promise((resolve)=>{
+                setTimeout(()=>{
+                    var ans = num*2;
+                    resolve(ans)
+                }, 1000)
+            })
+        }
+        function demo5(num)
+        {
+            return new Promise((resolve)=>{
+                setTimeout(()=>{
+                    var ans = num+100;
+                    resolve(ans)
+                }, 1000)
+            })
+        }
+
+
+    </script>
+</html>
