@@ -1,85 +1,63 @@
-import React, {useState} from 'react'
-import axios from 'axios';
+import React, { useState, useEffect } from 'react'
+import axios  from 'axios';
 
 const Products = () => {
-  let [user, setUser] = useState({
-    name : "",
-    aeg : ""
+  let [allCate, setAllCate] = useState([]);
+  let [newProduct, setNewProduct] = useState({
+    title : "",
+    price : "",
+    image : "",
+    category : "",
+    detail : "",
+    discount : ""
   })
-  let [data, setData] = useState([]);
 
-  let add = ()=>{
-    // API  -- Application Programming Interface
-    axios.post("http://localhost:3001", user).then(result=>{
-      console.log(result.data);
-    })
-  //  console.log(user);
-  //  setData([...data, user]);
-  //  setUser({name : "", age : ""});
-  clear();
+  useEffect(()=>{
+    let getData=async ()=>{
+      let response = await axios.get("http://localhost:3001/api/category");
+      setAllCate(response.data);
+    }
+
+    getData();
+  }, []);
+
+  let add = async ()=>{
+    //console.log(newProduct)
+    let response = await axios.post("http://localhost:3001/api/product", newProduct)
+    console.log(response.data);
   }
-  
-  let clear = ()=>{
-    setUser({name : "", age : ""});
-
-  }
-
   return (
     <>
-    <div className="container">
-      <div className="row">
-        <div className="col-md-12">
-          <button className='btn btn-info' data-toggle="modal" data-target="#addModal">Add</button>
-          <br />
-          {
-            data.length > 0 ? (<table className="table table-dark">
-            <thead>
-              <tr>
-                <th>S.No.</th>
-                <th>Name</th>
-                <th>Age</th>
-              </tr>
-
-            </thead>
-
-            <tbody>
+    <div className='container'>
+      <div className='row'>
+        <div className='col-md-6 offset-md-3'>
+          <div className='form-group'>
+            <label>Product Title</label>
+            <input type="text" value={newProduct.title} className="form-control" onChange={(event)=>setNewProduct({...newProduct, title : event.target.value})} />
+          </div>
+          <div className='form-group'>
+            <label>Product Price</label>
+            <input type="text" value={newProduct.price} className="form-control" onChange={(event)=>setNewProduct({...newProduct, price : event.target.value})} />
+          </div>
+          <div className='form-group'>
+            <label>Product Category</label>
+            <select className="form-control" onChange={(event)=>setNewProduct({...newProduct, category : event.target.value})} >
+              <option value="0">Select</option>
               {
-                data.map((item, index)=>{
-                  return(
-                    <tr key={index}>
-                      <td>{index+1}</td>
-                      <td>{item.name}</td>
-                      <td>{item.age}</td>
-                    </tr>
-                  )
-                })
+                allCate.map(item=><option key={item._id} value={item.name}>{item.name}</option>)
               }
-            </tbody>
-          </table>) : (<div className='alert alert-warning'>No Data Found</div>)
-          }
-        </div>
-      </div>
-    </div>
-    <div className='modal fade' id='addModal'>
-      <div className="modal-dialog">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h4>Add New Student</h4>
+            </select>
           </div>
-          <div className="modal-body">
-            <div className="form-group">
-              <label htmlFor="">Name</label>
-              <input type="text" value={user.name} onChange={(event)=>setUser({...user, name : event.target.value})} className='form-control' />
-            </div>
-            <div className="form-group">
-              <label htmlFor="">Age</label>
-              <input type="text" value={user.age} onChange={(event)=>setUser({...user, age : event.target.value})} className='form-control' />
-            </div>
+          <div className='form-group'>
+            <label>Product Detail</label>
+            <textarea value={newProduct.detail} className="form-control" onChange={(event)=>setNewProduct({...newProduct, detail : event.target.value})} ></textarea>
           </div>
-          <div className="modal-footer">
-            <button className='btn btn-primary' data-dismiss="modal" onClick={add}>Add</button>
-            <button className='btn btn-danger' onClick={clear} data-dismiss="modal">Close</button>
+          <div className='form-group'>
+            <label>Product Discount</label>
+            <input type="text" className="form-control" value={newProduct.discount} onChange={(event)=>setNewProduct({...newProduct, discount : event.target.value})} />
           </div>
+          <br />
+          <button onClick={add} className='btn btn-primary'>Add</button>
         </div>
       </div>
     </div>
@@ -88,4 +66,3 @@ const Products = () => {
 }
 
 export default Products
-

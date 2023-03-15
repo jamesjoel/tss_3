@@ -1,7 +1,9 @@
 import React, {useState} from 'react'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'
 
 const Category = () => {
+    let navigate = useNavigate();
     let [showSpinner, setShowSpinner] = useState(false);
     let [showMsg, setShowMsg] = useState(false);
     let [newCategroy, setNewCategory] = useState({
@@ -19,6 +21,7 @@ const Category = () => {
             setShowSpinner(false);
         }
         setNewCategory({ name : ""})
+        // navigate('/admin/category/list');
     }
   return (
     <>
