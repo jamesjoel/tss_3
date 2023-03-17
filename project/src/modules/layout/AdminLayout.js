@@ -1,6 +1,6 @@
 import React from 'react'
-import Header from '../components/shared/admin/Header/Header'
-import Footer from '../components/shared/admin/Footer/Footer'
+import Header from '../admin/components/shared/Header/Header'
+import Footer from '../admin/components/shared/Footer/Footer'
 import { Outlet } from 'react-router-dom'
 
 let AdminLayout = () => {

@@ -1,17 +1,17 @@
 import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import Home from '../components/pages/Home/Home';
-import About from '../components/pages/About/About';
-import Contact from '../components/pages/contact/Contact';
-import UserLayout from '../layout/UserLayout';
-import AdminLayout from '../layout/AdminLayout';
-import Dashboard from '../components/pages/admin/Dashboard/Dashboard'
-import Setting from '../components/pages/admin/Setting/Setting'
-import Products  from '../components/pages/admin/Products/Products'
-import NotFound from '../components/pages/NotFound/NotFound'
-import Category from '../components/pages/admin/Category/Category';
-import List from '../components/pages/admin/Category/List';
-import PList from '../components/pages/admin/Products/List';
+import Home from '../modules/user/component/pages/Home/Home';
+import About from '../modules/user/component/pages/About/About';
+import Contact from '../modules/user/component/pages/Contact/Contact';
+import UserLayout from '../modules/layout/UserLayout';
+import AdminLayout from '../modules/layout/AdminLayout';
+import Dashboard from '../modules/admin/components/pages/Dashboard/Dashboard'
+import Setting from '../modules/admin/components/pages/Setting/Setting'
+import Products  from '../modules/admin/components/pages/Products/Products'
+import NotFound from '../modules/user/component/pages/NotFound/NotFound'
+import Category from '../modules/admin/components/pages/Category/Category';
+import List from '../modules/admin/components/pages/Category/List';
+import PList from '../modules/admin/components/pages/Products/List';
 const AllRoutes = () => {
   return (
     <>
