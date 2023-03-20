@@ -23,6 +23,7 @@ const Navbar = () => {
 								<li><NavLink to="/">Home</NavLink></li>
 								<li><NavLink to="/about">About</NavLink></li>
 								<li><NavLink to="/contact">Contact</NavLink></li>
+								<li><NavLink to="/signup">Signup</NavLink></li>
 								{/* <li><a href="#">Pages</a>
 									<ul className="sub-menu">
 										<li><a href="404.html">404 page</a></li>
