@@ -6,6 +6,7 @@ import Contact from '../modules/user/component/pages/Contact/Contact';
 import UserLayout from '../modules/layout/UserLayout';
 import NotFound from '../modules/user/component/pages/NotFound/NotFound'
 import Signup from '../modules/user/component/pages/Signup/Signup';
+import Login from '../modules/user/component/pages/Login/Login';
 
 let UserRoutes = ()=>{
     return(
@@ -15,7 +16,8 @@ let UserRoutes = ()=>{
                 <Route path="about" element={<About />} />
                 <Route path="contact" element={<Contact />} />
                 <Route path="signup" element={<Signup />} />
-                <Route path='*' element={<NotFound />} />
+                <Route path="login" element={<Login />} />
+                {/* <Route path='*' element={<NotFound />} /> */}
             </Route>
         </Routes>
     )
