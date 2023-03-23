@@ -23,6 +23,8 @@ const Login = () => {
 
                 }
             }else{
+                let token = res.token;
+                localStorage.setItem("token", token);
                 navigate("/");
             }
         }
