@@ -1,7 +1,19 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React, {useEffect, useState} from 'react'
+import { NavLink, useFetcher } from 'react-router-dom'
 
 const Navbar = () => {
+	let [isLoggedIn, setIsLoggedIn]= useState("");
+	useEffect(()=>{
+		if(localStorage.getItem("token"))
+		{
+			console.log("***********")
+			setIsLoggedIn(true);
+		}else{
+			console.log("XXXXXXXXXXXX")
+			setIsLoggedIn(false);
+		}
+	})
+
   return (
     <>
     <div className="top-header-area" style={{backgroundColor : 'black', position : 'relative'}} id="sticker">
@@ -24,16 +36,10 @@ const Navbar = () => {
 								<li><NavLink to="/about">About</NavLink></li>
 								<li><NavLink to="/contact">Contact</NavLink></li>
 								{
-									localStorage.getItem("token") ? (
-										<>
-											<li><NavLink to="#">Profile</NavLink></li>
-											<li><NavLink to="#">Logout</NavLink></li>
-										</>
+									isLoggedIn ? (
+										<AfterLogin />
 									) : (
-										<>
-										<li><NavLink to="/signup">Signup</NavLink></li>
-											<li><NavLink to="/login">Login</NavLink></li>
-										</>
+										<BeforeLogin />
 									)
 								}
 
@@ -68,6 +74,24 @@ const Navbar = () => {
 	</div>
     </>
   )
+}
+
+let BeforeLogin = ()=>{
+	return(
+		<>
+			<li><NavLink to="/signup">Signup</NavLink></li>
+				<li><NavLink to="/login">Login</NavLink></li>
+			</>
+	)
+}
+
+let AfterLogin = ()=>{
+	return(
+		<>
+			<li><NavLink to="/profile">Profile</NavLink></li>
+			<li><NavLink to="/logout">Logout</NavLink></li>
+		</>
+	)
 }
 
 export default Navbar

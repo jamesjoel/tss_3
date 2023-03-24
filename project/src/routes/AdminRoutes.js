@@ -8,13 +8,15 @@ import Products  from '../modules/admin/components/pages/Products/Products'
 import Category from '../modules/admin/components/pages/Category/Category';
 import List from '../modules/admin/components/pages/Category/List';
 import PList from '../modules/admin/components/pages/Products/List';
+import Login from '../modules/admin/components/pages/Login/Login';
 
 
 let AdminRoutes = ()=>{
     return(
         <Routes>
             <Route path='admin' element={<AdminLayout />}>
-                <Route path='' element={<Dashboard />} />
+                <Route path='' element={<Login />} />
+                <Route path='dashboard' element={<Dashboard />} />
                 <Route path='setting' element={<Setting />} />
                 <Route path='products' element={<Products />} />
                 <Route path='products/list' element={<PList />} />
