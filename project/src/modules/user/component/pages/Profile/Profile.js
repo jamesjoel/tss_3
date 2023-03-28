@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import { getUserProfileData } from '../../../../../services/ProfileService';
+
 
 const Profile = () => {
 
@@ -16,22 +17,18 @@ const Profile = () => {
     let navigate = useNavigate();
 
     useEffect(()=>{
-
         if(! localStorage.getItem("token")){
             navigate("/login");
         }
-
-        let x = localStorage.getItem("token");
-        axios.get("http://localhost:3001/api/profile?token="+x).then(response=>{
-            // console.log(response.data);
-            setUser(response.data);
-        });
-        
-
-
-
+        getData();
     })
 
+
+    let getData = async ()=>{
+        let x = localStorage.getItem("token");
+        let res = await getUserProfileData(x);
+        setUser(res);
+    }
 
   return (
     <>
@@ -39,12 +36,34 @@ const Profile = () => {
         <div className="row">
             <div className="col-md-12">
                 <h3>User Profile Page</h3>
-                <p>{user.fullname}</p>
-                <p>{user.email}</p>
-                <p>{user.address}</p>
-                <p>{user.city}</p>
-                <p>{user.gender}</p>
-                <p>{user.contact}</p>
+                <div className='row'>
+                    <div className='col-md-6 offset-md-3'>
+                    <table className='table table-dark'>
+                        <tbody>
+                            <tr>
+                                <td>Full Name</td>
+                                <td>{user.fullname}</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>{user.email}</td>
+                            </tr>
+                            <tr>
+                                <td>Gender</td>
+                                <td>{user.gender}</td>
+                            </tr>
+                            <tr>
+                                <td>Address</td>
+                                <td>{user.address}</td>
+                            </tr>
+                            <tr>
+                                <td>City</td>
+                                <td>{user.city}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -53,3 +72,27 @@ const Profile = () => {
 }
 
 export default Profile
+/*
+    demo(5).then(x=>{
+        demo2(x).then(y=>{
+            demo3(y).then(z=>{
+                console.log(z);
+            })
+        })
+    })
+
+
+    hello();
+    
+
+    let hello = async ()=>{
+        let x = await demo(5);
+        let y = await demo2(x);
+        let z = await demo3(y);
+        console.log(z);
+        
+    }
+
+
+
+*/

@@ -9,6 +9,7 @@ import Category from '../modules/admin/components/pages/Category/Category';
 import List from '../modules/admin/components/pages/Category/List';
 import PList from '../modules/admin/components/pages/Products/List';
 import Login from '../modules/admin/components/pages/Login/Login';
+import Logout from '../modules/admin/components/pages/Logout/Logout';
 
 
 let AdminRoutes = ()=>{
@@ -22,6 +23,7 @@ let AdminRoutes = ()=>{
                 <Route path='products/list' element={<PList />} />
                 <Route path='category' element={<Category />} />
                 <Route path='category/list' element={<List />} />
+                <Route path='logout' element={<Logout />} />
                 <Route path='*' element={<Navigate to="/" />} />
             </Route>
         </Routes>

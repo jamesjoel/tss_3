@@ -1,8 +1,15 @@
-import React, {useState} from 'react'
-
+import React, {useState, useEffect} from 'react'
+import { useNavigate } from 'react-router-dom';
 const Setting = () => {
+  let navigate = useNavigate();
   let [color, setColor] = useState("");
   let [data, setData] = useState(["red", "green", "blue", "yellow"]); 
+
+  useEffect(()=>{
+    if(! localStorage.getItem("_admin_token")){
+      navigate("/");
+  }
+  })
 
   let add = ()=>{
     setData([...data, color]);

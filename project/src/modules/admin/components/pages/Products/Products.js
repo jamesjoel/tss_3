@@ -28,6 +28,10 @@ const Products = () => {
   
 
   useEffect(()=>{
+    if(! localStorage.getItem("_admin_token")){
+      navigate("/");
+    }
+
     let getData=async ()=>{
       let response = await axios.get("http://localhost:3001/api/category");
       setAllCate(response.data);

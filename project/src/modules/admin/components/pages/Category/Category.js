@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import axios from 'axios';
+import React, {useState, useEffect} from 'react'
+import { saveData } from '../../../../../services/CategoryService';
 import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import cateSchema from '../../../../../schemas/validation/category';
@@ -11,13 +11,20 @@ const Category = () => {
     let navigate = useNavigate();
     let [showSpinner, setShowSpinner] = useState(false);
     let [showMsg, setShowMsg] = useState(false);
+
+    useEffect(()=>{
+        if(! localStorage.getItem("_admin_token")){
+            navigate("/");
+        }
+    })
     
 
     let formik = useFormik({
         initialValues : cateForm,
         validationSchema : cateSchema,
         onSubmit : async (data)=>{
-            let response = await axios.post("http://localhost:3001/api/category", data);
+            
+            await saveData(data);
             navigate('/admin/category/list');
         }
     })

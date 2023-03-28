@@ -1,16 +1,36 @@
 import React, {useState, useEffect} from 'react'
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { getAllData, deleteData } from '../../../../../services/CategoryService';
+
 const List = () => {
+  let navigate = useNavigate();
   let [allCate, setAllCate] = useState([]);
 
   useEffect(()=>{
+
+    
+      if(! localStorage.getItem("_admin_token")){
+          navigate("/");
+      }
+  
+
     let getData=async ()=>{
-      let response = await axios.get("http://localhost:3001/api/category");
-      setAllCate(response.data);
+      let res = await getAllData();
+      setAllCate(res);
     }
 
     getData();
   }, []);
+
+
+
+  let deleteCate = async (obj)=>{
+    //console.log(obj)
+    let res = await deleteData(obj._id)
+    console.log(res);
+
+  }
+
 
   return (
     <>
@@ -22,6 +42,7 @@ const List = () => {
                 <tr>
                   <th>S.No.</th>
                   <th>Category</th>
+                  <th>Delete</th>
                 </tr>
               </thead>
 
@@ -32,6 +53,7 @@ const List = () => {
                       <tr key={item._id}>
                         <td>{index+1}</td>
                         <td>{item.name}</td>
+                        <td><button className='btn btn-sm btn-danger' onClick={()=> deleteCate(item)}>Delete</button></td>
                       </tr>
                     )
                   })

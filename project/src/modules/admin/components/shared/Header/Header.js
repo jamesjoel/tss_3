@@ -1,8 +1,20 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { NavLink } from 'react-router-dom'
 import './Header.css';
 
 const Header = () => {
+
+  let [isAdminLoggedIn, setIsAdminLoggedIn] = useState("");
+
+  useEffect(()=>{
+    if(localStorage.getItem("_admin_token")){
+      setIsAdminLoggedIn(true);
+    }else{
+      setIsAdminLoggedIn(false);
+    }
+  })
+
+
   return (
     <>
       <nav className="navbar navbar-expand-md bg-dark navbar-dark">
@@ -14,7 +26,7 @@ const Header = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        
+        { isAdminLoggedIn==true ? 
         <div className="collapse navbar-collapse" id="collapsibleNavbar">
           <ul className="navbar-nav">
             <li className="nav-item">
@@ -39,9 +51,15 @@ const Header = () => {
 
               </div>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/admin/logout">Logout</NavLink>
+            </li>
             
           </ul>
         </div>
+        : '' }
+
+
       </nav>
     </>
   )

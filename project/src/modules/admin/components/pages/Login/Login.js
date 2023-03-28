@@ -12,6 +12,7 @@ const Login = () => {
         initialValues : {username : "", password : ""},
         onSubmit:async (data)=>{
             let res = await Auth(data)
+          
             if(res.success == false){
                 if(res.errType == 1){
                     setMsg("This Username and Password is Incorrect");
@@ -21,6 +22,7 @@ const Login = () => {
                 }
             }
             else{
+                localStorage.setItem("_admin_token", res.token);
                 navigate("/admin/dashboard");
             }
         }

@@ -1,6 +1,7 @@
 const routes = require("express").Router();
 const Admin = require("../models/Admin");
 const sha1 = require("sha1");
+const jwt = require("jsonwebtoken");
 
 
 routes.post("/",async (req, res)=>{
@@ -11,8 +12,9 @@ routes.post("/",async (req, res)=>{
     {
         if(result[0].password == sha1(p))
         {
-
-            res.send({ success : true});
+            let obj = { id : result[0]._id, username : result[0].username };
+            let token = jwt.sign(obj, "tss");
+            res.send({ success : true, token});
         }
         else{
 

@@ -24,10 +24,11 @@ const Signup = () => {
         initialValues : singupForm,
         validationSchema : signupSchema,
         onSubmit : async (data)=>{
-            // console.log(data);
+                      // console.log(data);
             let res = await Insert(data);
             navigate("/");
         }
+        
     });
     
 
