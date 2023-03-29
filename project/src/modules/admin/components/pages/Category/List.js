@@ -27,7 +27,9 @@ const List = () => {
   let deleteCate = async (obj)=>{
     //console.log(obj)
     let res = await deleteData(obj._id)
-    console.log(res);
+    setAllCate((current)=>{
+        return current.filter(item => item._id != obj._id)
+    });
 
   }
 

@@ -1,11 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom'
 import { Auth } from '../../../../../services/AuthService';
 
 const Login = () => {
-    let [msg, setMsg] = useState("");
     let navigate = useNavigate();
+    useEffect(()=>{
+        if(localStorage.getItem("token")){
+            navigate("/profile");
+        }
+    })
+
+
+
+    let [msg, setMsg] = useState("");
     let { handleSubmit, handleChange } = useFormik({
         initialValues : { email : "", password : ""},
         onSubmit : async (data)=>{

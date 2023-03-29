@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useFormik } from 'formik'
 import { useNavigate } from 'react-router-dom'
 import { Auth } from '../../../../../services/AdminAuthService'
@@ -6,6 +6,13 @@ import { Auth } from '../../../../../services/AdminAuthService'
 const Login = () => {
 
     let navigate = useNavigate();
+
+    useEffect(()=>{
+        if(localStorage.getItem("_admin_token")){
+            navigate("/admin/dashboard");
+        }
+    })
+
     let [msg, setMsg] = useState("");
 
     let { handleChange, handleSubmit } = useFormik({
