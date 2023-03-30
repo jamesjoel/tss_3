@@ -13,8 +13,8 @@ const App = () => {
       <Routes>
         <Route path='' element={<Home />} />
         <Route path='demo' element={<Demo />} />
+        <Route path='demo/:id' element={<Demo />} />
         <Route path='list' element={<List />} />
-        <Route path='demo/:x' element={<Demo />} />
 
       </Routes>
     </>
@@ -27,35 +27,44 @@ const Home = ()=>{
     <h1>Home</h1>
   )
 }
+
+
 const Demo = ()=>{
   let param = useParams();
-  let user;
-  if(param.x){
-    console.log("********");
-    user = { name : "James", age : 30};
-  }else{
-    
-    user = { name : "", age : ""};
-  }
+  let [user, setUser] = useState({ name : "", age : ""});
 
+  useEffect(()=>{
+    if(param.id){
+      async function fetchData(){
+        const res = await getData(param.id);
+        
+        setUser(res);
+      }
+      fetchData();
+    }
+  }, [])
 
   let navigate = useNavigate();
   let { handleSubmit, handleChange, values } = useFormik({
-    initialValues : user,
+    initialValues : { name : "", age : ""},
+    values : user,
+    enableReinitialize : true,
     onSubmit : async (formData)=>{
       let res = await insertData(formData);
       navigate("/list");
     }
   })
 
+  
+
   return(
     <>
       <h1>Demo</h1>
       <form onSubmit={handleSubmit}>
-        Full Name :  <input type="text" value={values.name} name='name' onChange={handleChange} />
+        Full Name :  <input type="text" value={values.name}  name='name' onChange={handleChange} />
         <br />
         <br />
-        Age :  <input type="text" name='age' value={values.age} onChange={handleChange} />
+        Age :  <input type="text" name='age' value={values.age}  onChange={handleChange} />
         <br />
         <br />
         <button type='submit'>Add</button>
@@ -84,8 +93,8 @@ const List = ()=>{
     });
   }
 
-  let edit = (item)=>{
-    navigate("/demo/"+item._id);
+  let edit = (obj)=>{
+    navigate("/demo/"+obj._id);
   }
 
   return(

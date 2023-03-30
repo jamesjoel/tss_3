@@ -1,5 +1,5 @@
 import axios from 'axios';
-let API_URL = "http://localhost:3001/api/demo";
+let API_URL = "http://localhost:3001/api/student";
 
 let getAllData = async ()=>{
     let response = await axios.get(API_URL);
@@ -20,5 +20,7 @@ let insertData = async (data)=>{
 let updateData = async (id, data)=>{
     let response = await axios.put(API_URL+"/"+id, data)
 }
+
+
 
 export { getAllData, getData, removeData, insertData, updateData }
