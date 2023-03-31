@@ -34,6 +34,10 @@ const List = () => {
   }
 
 
+  let editCate = (obj)=>{
+    navigate("/admin/category/"+obj._id);
+  }
+
   return (
     <>
       <div className='container'>
@@ -45,6 +49,7 @@ const List = () => {
                   <th>S.No.</th>
                   <th>Category</th>
                   <th>Delete</th>
+                  <th>Edit</th>
                 </tr>
               </thead>
 
@@ -56,6 +61,7 @@ const List = () => {
                         <td>{index+1}</td>
                         <td>{item.name}</td>
                         <td><button className='btn btn-sm btn-danger' onClick={()=> deleteCate(item)}>Delete</button></td>
+                        <td><button className='btn btn-sm btn-info' onClick={()=> editCate(item)}>Edit</button></td>
                       </tr>
                     )
                   })

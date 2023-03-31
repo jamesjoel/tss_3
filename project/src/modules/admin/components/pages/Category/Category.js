@@ -1,14 +1,15 @@
 import React, {useState, useEffect} from 'react'
-import { saveData } from '../../../../../services/CategoryService';
-import { useNavigate } from 'react-router-dom'
+import { saveData, getData, updateData } from '../../../../../services/CategoryService';
+import { useNavigate, useParams } from 'react-router-dom'
 import { useFormik } from 'formik'
 import cateSchema from '../../../../../schemas/validation/category';
 
-const cateForm = {
-    name : ""
-}
+
 const Category = () => {
+    let param = useParams();
     let navigate = useNavigate();
+
+    let [cate, setCate] = useState({ name : ""})
     let [showSpinner, setShowSpinner] = useState(false);
     let [showMsg, setShowMsg] = useState(false);
 
@@ -16,47 +17,53 @@ const Category = () => {
         if(! localStorage.getItem("_admin_token")){
             navigate("/");
         }
-    })
-    
 
+        let fetchData = async()=>{
+            if(param.id){
+                let res = await getData(param.id);
+                // console.log(res);
+                setCate(res);
+            }else{
+                setCate({ name:""});
+            }
+        }
+        fetchData();
+
+    }, [param.id])
+    
+    
     let formik = useFormik({
-        initialValues : cateForm,
+        initialValues : {name : cate.name ? cate.name : ""},
         validationSchema : cateSchema,
+        enableReinitialize : true,
         onSubmit : async (data)=>{
+            if(param.id){
+                await updateData(param.id, data);
+                navigate('/admin/category/list');
+            }else{
+                await saveData(data);
+                navigate('/admin/category/list');
+            }
             
-            await saveData(data);
-            navigate('/admin/category/list');
+            
         }
     })
 
-    // let add = async()=>{
-    //     // axios.post("http://localhost:3001/api/category", newCategroy).then(response=>{
-    //     //     console.log(response);
-    //     // })
-    //     setShowSpinner(true);
-    //     setShowMsg(true);
-
-    //     let response = await axios.post("http://localhost:3001/api/category", newCategroy);
-    //     if(response.data.success==true){
-    //         setShowSpinner(false);
-    //     }
-    //     setNewCategory({ name : ""})
-    //     // navigate('/admin/category/list');
-    // }
+   
   return (
     <>
         <div className="container">
             <div className="row">
                 <div className="col-md-6 offset-md-3">
-                    <h4>Add New Category</h4>
+                    <h4>{param.id ? 'Update' :'Add New' } Category</h4>
                     <form onSubmit={formik.handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="">Category Name</label>
-                        <input type="text" onChange={formik.handleChange} name="name" className={'form-control '+(formik.touched.name && formik.errors.name ? 'is-invalid' : '')} />
+                        <input type="text" value={formik.values.name}  onChange={formik.handleChange} name="name" className={'form-control '+(formik.touched.name && formik.errors.name ? 'is-invalid' : '')} />
                         <small className='text-danger'>{ formik.touched.name && formik.errors.name ? formik.errors.name : ''}</small>
                     </div>
                     <br />
-                    <button type='submit' className='btn btn-primary'>Add</button>
+                    <button type='submit' className='btn btn-primary'>{param.id ? 'Update' : 'Add' }</button>
                     
                     </form>
                 </div>

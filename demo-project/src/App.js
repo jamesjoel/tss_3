@@ -31,27 +31,40 @@ const Home = ()=>{
 
 const Demo = ()=>{
   let param = useParams();
-  let [user, setUser] = useState({ name : "", age : ""});
+  let [user, setUser ]  = useState({ name : "", age : ""});
 
   useEffect(()=>{
-    if(param.id){
-      async function fetchData(){
-        const res = await getData(param.id);
-        
+    let fetchData = async ()=>{
+      
+      if(param.id){
+        let res = await getData(param.id);
         setUser(res);
+      }else{
+        
+        setUser({ name : "", age : ""})
       }
-      fetchData();
     }
-  }, [])
+    fetchData();
+  }, [param.id])
+
+  
+  
 
   let navigate = useNavigate();
   let { handleSubmit, handleChange, values } = useFormik({
-    initialValues : { name : "", age : ""},
-    values : user,
+    initialValues : {name : user.name ? user.name : "", age : user.age ?  user.age : ""},
     enableReinitialize : true,
+  
     onSubmit : async (formData)=>{
-      let res = await insertData(formData);
-      navigate("/list");
+      if(param.id){
+        // update API
+        let res = await updateData(param.id, formData);
+        navigate("/list");
+      }else{
+        let res = await insertData(formData);
+        navigate("/list");
+
+      }
     }
   })
 
@@ -67,7 +80,7 @@ const Demo = ()=>{
         Age :  <input type="text" name='age' value={values.age}  onChange={handleChange} />
         <br />
         <br />
-        <button type='submit'>Add</button>
+        <button type='submit'>{user.name ? 'Update' : 'Add' }</button>
       </form>
     </>
   )
@@ -84,6 +97,7 @@ const List = ()=>{
   let receiveData = async()=>{
     let arr =await getAllData();
     setAllData(arr);
+    //console.log(allData);
   }
   
   let del = async (item)=>{
@@ -131,3 +145,18 @@ const List = ()=>{
 }
 
 export default App
+
+/*
+  hello() --- this will return a Promise
+
+  let demo = async()=>{
+    let a = await hello();
+
+  }
+
+
+
+
+
+
+*/

@@ -22,11 +22,15 @@ let AdminRoutes = ()=>{
                 <Route path='products' element={<Products />} />
                 <Route path='products/list' element={<PList />} />
                 <Route path='category' element={<Category />} />
+                <Route path='category/:id' element={<Category />} />
                 <Route path='category/list' element={<List />} />
                 <Route path='logout' element={<Logout />} />
                 <Route path='*' element={<Navigate to="/" />} />
             </Route>
         </Routes>
+
+        // /admin/category
+        // admin/category/123
     )
 }
 
