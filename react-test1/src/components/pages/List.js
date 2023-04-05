@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom'
 import { getAllData, deleteData } from '../../services/TeacherService'
 
 const List = () => {
 
+  let navigate = useNavigate();
   let [teacher, setTeacher] = useState([]);
   let [teach, setTeach] = useState({});
   
@@ -25,6 +27,9 @@ const List = () => {
         return cur.filter(item=> item.id != teach.id)
     })
   }
+  let askEdit = (obj)=>{
+    navigate(`/edit/${obj.id}`);
+  }
 
   return (
     <>
@@ -39,6 +44,7 @@ const List = () => {
                 <th>Age</th>
                 <th>City</th>
                 <th>Delete</th>
+                <th>Edit</th>
               </tr>
             </thead>
             <tbody>
@@ -51,6 +57,7 @@ const List = () => {
                       <td>{t.age}</td>
                       <td>{t.city}</td>
                       <td><button onClick={()=>askDelete(t)} data-toggle='modal' data-target='#delModal' className='btn btn-sm btn-danger'>Delete</button></td>
+                      <td><button onClick={()=>askEdit(t)} className='btn btn-sm btn-info'>Edit</button></td>
                       
                     </tr>
                   )

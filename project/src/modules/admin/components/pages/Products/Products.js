@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import axios  from 'axios';
+import { insertData }  from '../../../../../services/ProductService';
+import { getAllData } from '../../../../../services/CategoryService'
 import {useFormik} from 'formik';
 import proSchema from '../../../../../schemas/validation/product';
 
@@ -19,7 +20,7 @@ const Products = () => {
     initialValues : proForm,
     validationSchema : proSchema,
     onSubmit : async (data)=>{
-      await axios.post("http://localhost:3001/api/product", data);
+      await insertData(data);
       navigate("/admin/products/list");
     }
   })
@@ -33,8 +34,8 @@ const Products = () => {
     }
 
     let getData=async ()=>{
-      let response = await axios.get("http://localhost:3001/api/category");
-      setAllCate(response.data);
+      let response = await getAllData();
+      setAllCate(response);
     }
 
     getData();

@@ -1,7 +1,22 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import News from '../../shared/News/News'
 import Slider from '../../shared/Slider/Slider'
+import Products from '../../shared/Products/Products'
+import { getAllData } from '../../../../../services/ProductService'
 const Home = () => {
+
+	let [allPro, setAllPro] = useState([]);
+
+	useEffect(()=>{
+		fetchData();
+	}, [])
+
+	let fetchData = async ()=>{
+		let res = await getAllData();
+		console.log(res);
+		setAllPro(res);
+	}
+
   return (
     <>
 	<Slider />
@@ -17,36 +32,11 @@ const Home = () => {
 			</div>
 
 			<div className="row">
-				<div className="col-lg-4 col-md-6 text-center">
-					<div className="single-product-item">
-						<div className="product-image">
-							<a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""/></a>
-						</div>
-						<h3>Strawberry</h3>
-						<p className="product-price"><span>Per Kg</span> 85$ </p>
-						<a href="cart.html" className="cart-btn"><i className="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div className="col-lg-4 col-md-6 text-center">
-					<div className="single-product-item">
-						<div className="product-image">
-							<a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt=""/></a>
-						</div>
-						<h3>Berry</h3>
-						<p className="product-price"><span>Per Kg</span> 70$ </p>
-						<a href="cart.html" className="cart-btn"><i className="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
-				<div className="col-lg-4 col-md-6 offset-md-3 offset-lg-0 text-center">
-					<div className="single-product-item">
-						<div className="product-image">
-							<a href="single-product.html"><img src="assets/img/products/product-img-3.jpg" alt=""/></a>
-						</div>
-						<h3>Lemon</h3>
-						<p className="product-price"><span>Per Kg</span> 35$ </p>
-						<a href="cart.html" className="cart-btn"><i className="fas fa-shopping-cart"></i> Add to Cart</a>
-					</div>
-				</div>
+				{
+					allPro.map(item=><Products key={item._id} obj={item}/>)
+				}
+				
+				
 			</div>
 		</div>
 	</div>

@@ -17,6 +17,18 @@
       "age": "24",
       "city": "indore",
       "id": 4
+    },
+    {
+      "name": "Nilesh",
+      "age": "20",
+      "city": "mumbai",
+      "id": 5
+    },
+    {
+      "name": "Ram",
+      "age": "20",
+      "city": "mumbai",
+      "id": 6
     }
   ]
 }
