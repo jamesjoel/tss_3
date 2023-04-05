@@ -22,11 +22,8 @@ route.post("/save", (req, res)=>{
     // E:/tss4/exp5/assets/user-images
 
 
-    req.files.photo.mv(path.resolve()+"/assets/user-image/"+name, (err)=>{
-        if(err){
-            console.log(err);
-            return;
-        }
+    req.files.photo.mv("/assets/user-image/"+name, (err)=>{
+        
         Image.create({ name : name }, (err)=>{
             res.redirect("/images");
         })
