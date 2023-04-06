@@ -1,9 +1,14 @@
 import React, {useEffect, useState} from 'react'
 import { NavLink, useFetcher } from 'react-router-dom'
+import { getAllData } from '../../../../../services/CategoryService'
 
 const Navbar = () => {
+
+	
 	let [isLoggedIn, setIsLoggedIn]= useState("");
+	let [allCate, setAllCate] = useState([]);
 	useEffect(()=>{
+		fetchCate();
 		if(localStorage.getItem("token"))
 		{
 			console.log("***********")
@@ -13,6 +18,11 @@ const Navbar = () => {
 			setIsLoggedIn(false);
 		}
 	})
+
+	let fetchCate = async ()=>{
+		let res = await getAllData();
+		setAllCate(res);
+	}
 
   return (
     <>
@@ -45,17 +55,15 @@ const Navbar = () => {
 
 
 
-								{/* <li><a href="#">Pages</a>
+								<li><a href="#">Categories</a>
 									<ul className="sub-menu">
-										<li><a href="404.html">404 page</a></li>
-										<li><a href="about.html">About</a></li>
-										<li><a href="cart.html">Cart</a></li>
-										<li><a href="checkout.html">Check Out</a></li>
-										<li><a href="contact.html">Contact</a></li>
-										<li><a href="news.html">News</a></li>
-										<li><a href="shop.html">Shop</a></li>
+										{
+											allCate.map(item=><li key={item._id}><a href="#">{item.name}</a></li>)
+										}
+										
+										
 									</ul>
-								</li> */}
+								</li>
 								
 								<li>
 									<div className="header-icons">
@@ -95,3 +103,4 @@ let AfterLogin = ()=>{
 }
 
 export default Navbar
+

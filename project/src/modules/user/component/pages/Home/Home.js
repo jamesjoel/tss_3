@@ -30,14 +30,14 @@ const Home = () => {
 					</div>
 				</div>
 			</div>
+			<div className='row'>
 
-			<div className="row">
-				{
-					allPro.map(item=><Products key={item._id} obj={item}/>)
-				}
-				
-				
+			{
+				allPro.map(item=><Products key={item._id}  obj={item}/>)
+			}
+			
 			</div>
+			
 		</div>
 	</div>
 	<News />

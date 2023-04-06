@@ -1,16 +1,25 @@
 const routes = require("express").Router();
 const Product = require("../models/Product");
+const path = require("path")
 
 routes.get("/",async (req, res)=>{ // get all
     let result = await Product.find({});
-    res.send(result);
+    let newresult = result.map(item=>{
+        item.image = "http://localhost:3001/product_images/"+item.image;
+        return item;
+    })
+    res.send(newresult);
 })
 routes.post("/",async (req, res)=>{ // insert
-    console.log(req.body);
-    console.log(req.files);
-    return;
-    await Product.create(req.body);
-    res.send({success : true });
+    let image = req.files.image;
+    //console.log(path.resolve());
+    //return;
+    image.mv(path.resolve()+'/assets/product_images/'+image.name, async (err)=>{
+        req.body.image = req.files.image.name;
+        await Product.create(req.body);
+        res.send({success : true });
+    })
+
 })
 routes.get("/:id",async (req, res)=>{ // get one
     var id = req.params.id;

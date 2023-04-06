@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { API } from '../config/constants';
 let API_URL = `${API}product`;
+// localhost:30001/api/product
 
 let getAllData = async ()=>{
     let res = await axios.get(API_URL);

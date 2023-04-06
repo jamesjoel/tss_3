@@ -10,17 +10,22 @@ let proForm = {
   price : "",
   category : "",
   detail : "",
-  discount : ""
+  discount : "",
+  image : ""
 }
 
 const Products = () => {
 
   let navigate = useNavigate();
-  let {handleSubmit, handleChange, errors, touched} = useFormik({
+  let {handleSubmit, handleChange, errors, touched, setFieldValue} = useFormik({
     initialValues : proForm,
     validationSchema : proSchema,
     onSubmit : async (data)=>{
-      await insertData(data);
+      let fm = new FormData();
+      for(let x in data){
+        fm.append(x, data[x]);
+      }
+      await insertData(fm);
       navigate("/admin/products/list");
     }
   })
@@ -57,6 +62,11 @@ const Products = () => {
             <label>Product Price</label>
             <input type="text"  className={'form-control '+(touched.price && errors.price ?'is-invalid' : '')} onChange={handleChange} name="price" />
             <small className='text-danger'>{ touched.price && errors.price ? errors.price : ''}</small>
+          </div>
+          <div className='form-group'>
+            <label>Product Image</label>
+            <input type="file"  className={'form-control '+(touched.image && errors.image ?'is-invalid' : '')} onChange={(e)=>setFieldValue("image", e.target.files[0])} name="image" />
+            <small className='text-danger'>{ touched.image && errors.image ? errors.image : ''}</small>
           </div>
           <div className='form-group'>
             <label>Product Category</label>
