@@ -5,20 +5,31 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import Store from './redux/Store';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import StudentSlice from './redux/StudentSlice';
+import TeacherSlice from './redux/TeacherSlice';
+
+let allReducer = combineReducers({
+  StudentSlice,
+  TeacherSlice
+})
+
+let store = configureStore({
+  reducer : allReducer
+})
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
 
-  <Provider store={Store}>
+  <Provider store={store}>
 
     <BrowserRouter>
       <App />
     </BrowserRouter>
-
   </Provider>
+
 
 
   </React.StrictMode>
