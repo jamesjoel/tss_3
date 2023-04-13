@@ -40,3 +40,16 @@ let TeacherSlice = createSlice({
 
 export default TeacherSlice.reducer;
 export let { delTecher } = TeacherSlice.actions;
+
+
+
+/*
+
+let obj = { a : "rohit", b : "amar"};
+
+
+
+
+let {a} = obj;
+
+*/

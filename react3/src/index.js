@@ -6,12 +6,16 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import StudentSlice from './redux/StudentSlice';
-import TeacherSlice from './redux/TeacherSlice';
+import StudentReducer from './redux/StudentSlice';
+import TeacherReducer from './redux/TeacherSlice';
+import ProductReducer from './redux/ProductSlice'
+import CartReducer from './redux/CartSlice'
 
 let allReducer = combineReducers({
-  StudentSlice,
-  TeacherSlice
+  StudentReducer,
+  TeacherReducer,
+  ProductReducer,
+  CartReducer
 })
 
 let store = configureStore({
