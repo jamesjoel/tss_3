@@ -5,6 +5,7 @@ import Profile from './Profile'
 import Teacher from './Teacher'
 import Product from './Product'
 import MyCart from './MyCart'
+import Student from './Student'
 
 const AllRoutes = () => {
   return (
@@ -15,6 +16,7 @@ const AllRoutes = () => {
         <Route path='teacher' element={<Teacher />} />
         <Route path='product' element={<Product />} />
         <Route path='mycart' element={<MyCart />} />
+        <Route path='student' element={<Student />} />
     </Routes>
     </>
   )

@@ -7,7 +7,7 @@ let ProductSlice = createSlice({
     initialState : [],
     reducers : {
         addPro(state, action){
-            
+            // replace
             return state = action.payload;
         }
     }

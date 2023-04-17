@@ -9,7 +9,7 @@ const Home = () => {
   // });
 
 
-  let mydata = useSelector(data=>data.StudentSlice);
+  let mydata = useSelector(data=>data.StudentReducer);
   let disp = useDispatch();
 
   let del = (obj)=>{

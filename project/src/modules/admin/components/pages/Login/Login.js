@@ -2,10 +2,13 @@ import React, {useState, useEffect} from 'react'
 import { useFormik } from 'formik'
 import { useNavigate } from 'react-router-dom'
 import { Auth } from '../../../../../services/AdminAuthService'
+import { useDispatch } from 'react-redux'
+import { createToken } from '../../../../../redux/AdminAuthReducer'
 
 const Login = () => {
 
     let navigate = useNavigate();
+    let dispatch = useDispatch();
 
     useEffect(()=>{
         if(localStorage.getItem("_admin_token")){
@@ -29,6 +32,8 @@ const Login = () => {
                 }
             }
             else{
+                console.log("***************");
+                dispatch(createToken(res.token));
                 localStorage.setItem("_admin_token", res.token);
                 navigate("/admin/dashboard");
             }

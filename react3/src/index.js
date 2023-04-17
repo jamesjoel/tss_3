@@ -10,12 +10,14 @@ import StudentReducer from './redux/StudentSlice';
 import TeacherReducer from './redux/TeacherSlice';
 import ProductReducer from './redux/ProductSlice'
 import CartReducer from './redux/CartSlice'
+import Student2Reducer from './redux/Student2Slice';
 
 let allReducer = combineReducers({
   StudentReducer,
   TeacherReducer,
   ProductReducer,
-  CartReducer
+  CartReducer,
+  Student2Reducer
 })
 
 let store = configureStore({

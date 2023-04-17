@@ -1,18 +1,21 @@
 import React, {useEffect, useState} from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useFetcher } from 'react-router-dom'
 import './Header.css';
+import { createToken } from '../../../../../redux/AdminAuthReducer'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Header = () => {
-
-  let [isAdminLoggedIn, setIsAdminLoggedIn] = useState("");
-
+  let dispatch = useDispatch();
   useEffect(()=>{
+    console.log("#############");
     if(localStorage.getItem("_admin_token")){
-      setIsAdminLoggedIn(true);
-    }else{
-      setIsAdminLoggedIn(false);
-    }
-  })
+        console.log("XXXXXXXXXXXXXXXXX");
+        let token = localStorage.getItem("_admin_token");
+        dispatch(createToken(token))
+      }
+  }, [])
+
+  let token = useSelector(state=>state.AdminAuthReducer);
 
 
   return (
@@ -26,8 +29,9 @@ const Header = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        { isAdminLoggedIn==true ? 
+        
         <div className="collapse navbar-collapse" id="collapsibleNavbar">
+          { token ? (
           <ul className="navbar-nav">
             <li className="nav-item">
               <NavLink className="nav-link" to="/admin/dashboard">Dashboard</NavLink>
@@ -56,8 +60,9 @@ const Header = () => {
             </li>
             
           </ul>
+          ) : '' }
         </div>
-        : '' }
+        
 
 
       </nav>
