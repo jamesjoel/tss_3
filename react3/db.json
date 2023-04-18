@@ -1,0 +1,29 @@
+{
+  "teacher": [
+    {
+      "id": 1,
+      "name": "rohit",
+      "age": 25
+    },
+    {
+      "id": 2,
+      "name": "aman",
+      "age": 22
+    },
+    {
+      "name": "Gaurav",
+      "age": "25",
+      "id": 3
+    },
+    {
+      "name": "James",
+      "age": "21",
+      "id": 4
+    },
+    {
+      "name": "Nidhi",
+      "age": "20",
+      "id": 5
+    }
+  ]
+}

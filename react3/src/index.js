@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import StudentReducer from './redux/StudentSlice';
-import TeacherReducer from './redux/TeacherSlice';
+import TeacherReducer  from './redux/TeacherSlice'
 import ProductReducer from './redux/ProductSlice'
 import CartReducer from './redux/CartSlice'
 import Student2Reducer from './redux/Student2Slice';
