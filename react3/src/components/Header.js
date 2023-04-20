@@ -5,7 +5,8 @@ const Header = () => {
   // let data = useSelector(state=>state.StudentSlice);
   // let teacher = useSelector(state=>state.TeacherSlice);
   let cart = useSelector(data=>data.CartReducer);
-  console.log(cart);
+  let teacer = useSelector(data=>data.TeacherReducer);
+  
   return (
     <>
     <nav className='navbar navbar-dark navbar-expand-sm bg-dark'>
@@ -24,7 +25,7 @@ const Header = () => {
             <NavLink className='nav-link' to='product'>Product</NavLink>
           </li>
           <li className='nav-item'>
-            <NavLink className='nav-link' to='teacher'>Teacher</NavLink>
+            <NavLink className='nav-link' to='teacher'>Teacher ({teacer.length})</NavLink>
           </li>
           <li className='nav-item'>
             <NavLink className='nav-link' to='mycart'>My Cart ({cart.length})</NavLink>

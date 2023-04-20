@@ -9,15 +9,16 @@ let AddTeacher = createAsyncThunk('addteacher', async(obj)=>{
 })
 let DeleteTeacher = createAsyncThunk('deleteteacher', async(obj)=>{
     let res = await axios.delete(`${API_URL}/${obj.id}`);
-    return res.data;
+    return obj;
 })
 let GetTeacher = createAsyncThunk('getteacher', async()=>{
     let res = await axios.get(API_URL);
     return res.data;
 })
 let UpdateTeacher = createAsyncThunk('updateteacher', async(obj)=>{
+    console.log(obj);
     let res = await axios.put(`${API_URL}/${obj.id}`, obj);
-    return res.data;
+    return obj;
 })
 
 
@@ -35,6 +36,7 @@ let TeacherReducer = createSlice({
             state.push(action.payload);
         },
         [DeleteTeacher.fulfilled] : (state, action)=>{
+            console.log(action.payload);
             return state.filter(item=>item.id != action.payload.id);
         },
         [GetTeacher.fulfilled] : (state, action)=>{
