@@ -23,6 +23,8 @@ let StudentSlice = createSlice({
     reducers : {
         addStudent(state, action){ // action.payload
             // console.log(action.payload, "****************");
+            let count = state.length;
+            action.payload.id = count+1;
             state.push(action.payload);
         },
         deleteStudent(state, action){
