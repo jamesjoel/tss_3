@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.23442a86.css","mappings":"AAAA,cACI,kBACJ","sources":["modules/admin/components/shared/Header/Header.css"],"sourcesContent":["ul.navbar-nav{\r\n    margin: 0 !important;\r\n}"],"names":[],"sourceRoot":""}
