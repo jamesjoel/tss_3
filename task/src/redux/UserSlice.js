@@ -31,7 +31,7 @@ let UpdateUser = createAsyncThunk("updateuser", async (obj)=>{
 const UserReducer = createSlice({
     name : "user",
     initialState :[],
-    reducers : {
+    extraReducers : {
         [AddUser.fulfilled] : (state, action)=>{
             
             state.push(action.payload);

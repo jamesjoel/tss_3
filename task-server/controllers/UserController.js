@@ -14,6 +14,7 @@ routes.get("/:id", async(req, res)=>{
     res.send(result);
 })
 routes.post("/", async(req, res)=>{
+    delete req.body._id;
     let result = await User.create(req.body);
     res.send(result);
 })
