@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import App2 from './App2';
 import reportWebVitals from './reportWebVitals';
 import MyData from './ContextHook';
 
@@ -10,7 +11,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <MyData.Provider value={["amar", "rohit", "nidhi"]}>
-      <App />
+      <App2 />
 
     </MyData.Provider>
   </React.StrictMode>
