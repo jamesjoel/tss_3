@@ -1,13 +1,22 @@
 import React, { useState } from 'react'
 import { useFormik } from 'formik'
 import { Auth } from '../services/AuthService'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { setToken } from '../redux/AuthSlice'
+
 const Login = () => {
+    let navigate = useNavigate();
+    let disp = useDispatch();
     let [err, setErr] = useState("");
     let { handleSubmit, handleChange, values } = useFormik({
         initialValues : { email : "", password : ""},
         onSubmit : async (formData)=>{
             try{
                 let response = await Auth(formData);
+                localStorage.setItem("token", response.token);
+                disp(setToken(response.token))
+                navigate("/profile");
             }catch(err){
                 let response = err.response.data;
                 

@@ -1,7 +1,20 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { NavLink } from 'react-router-dom';
-
+import { useSelector, useDispatch } from 'react-redux'
+import { setToken } from '../redux/AuthSlice'
 const Header = () => {
+  let disp = useDispatch();
+  // let [isLoggedIn, setIsLoggedIn] =useState(false);
+  useEffect(()=>{
+    if(localStorage.getItem("token")){
+      let token = localStorage.getItem("token");
+      
+      disp(setToken(token));
+
+    }
+  }, [])
+
+  let token = useSelector(state => state.AuthReducer);
   return (
     <>
     <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -15,12 +28,23 @@ const Header = () => {
                 <li className="nav-item">
                 <NavLink className="nav-link" to="/">Home</NavLink>
                 </li>
-                <li className="nav-item">
+                {
+                  token ? (
+                  <>
+                  <li className="nav-item">
+                  <NavLink className="nav-link" to="/profile">Profile</NavLink>
+                  </li>
+                  <li className="nav-item">
+                  <NavLink className="nav-link" to="/logout">Logout</NavLink>
+                  </li>
+                  </>
+                  
+                  ) : (<li className="nav-item">
                 <NavLink className="nav-link" to="/login">Login</NavLink>
-                </li>
-                <li className="nav-item">
-                <NavLink className="nav-link" to="/profile">Profile</NavLink>
-                </li>
+                </li>)
+                }
+                
+                
             </ul>
             </div>
         </div>
