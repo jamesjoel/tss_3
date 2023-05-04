@@ -10,6 +10,9 @@ const Header = () => {
             <li className='nav-item'>
                 <NavLink className='nav-link' to="user">User</NavLink>
             </li>
+            <li className='nav-item'>
+                <NavLink className='nav-link' to="user">Demo</NavLink>
+            </li>
         </ul>
     </nav>
   )
